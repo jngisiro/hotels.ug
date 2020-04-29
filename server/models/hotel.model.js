@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 // Saftety net handle unexpected programming errors
-process.on("uncaughtException", (err) => {
+process.on("uncaughtException", err => {
   console.log("UNCAUGHT EXCEPTION!");
   console.log(err.name, err.stack);
   // process.exit(1);
@@ -20,10 +20,10 @@ mongoose
     useNewUrlParser: true,
     useCreateIndex: true,
     useFindAndModify: false,
-    useUnifiedTopology: true,
+    useUnifiedTopology: true
   })
-  .then((con) => console.log("Successful Database Connection"))
-  .catch((err) => console.log(err));
+  .then(con => console.log("Successful Database Connection"))
+  .catch(err => console.log(err));
 
 const app = require("./app");
 
@@ -35,7 +35,7 @@ const server = app.listen(PORT, () => {
   );
 });
 
-process.on("unhandledRejection", (err) => {
+process.on("unhandledRejection", err => {
   console.log("UNHANDLED REJECTION!");
   console.log(err.name, err.message);
   // server.close(() => {
