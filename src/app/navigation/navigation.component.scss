@@ -1,0 +1,26 @@
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+.navigation{
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  background-color: #fa3412;
+
+  .logo{
+    flex-grow: 1;
+    font-size: 2rem;
+  color:#fff;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-evenly;
+  list-style: none;
+  flex-grow: 4;
+  color:#fff;
+}

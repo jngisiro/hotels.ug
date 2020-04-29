@@ -1,0 +1,5 @@
+.hotel__list {
+  display: grid;
+  grid-template-columns: repeat(1fr, 4);
+  grid-auto-flow: column;
+}

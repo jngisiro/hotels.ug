@@ -1,0 +1,11 @@
+<ul *ngIf="hasAmenities; else noAmenities">
+  <li *ngFor="let i of hotelAmenities">{{ i }}</li>
+</ul>
+
+<p [ngStyle]="{color: getColor()}" [ngClass]="{amenities: hasAmenities}" >All available</p>
+
+<ng-template #noAmenities>
+  <p>
+    Hotel has no amenities
+  </p>
+</ng-template>
