@@ -1,3 +1,43 @@
-<div class="hotel__list">
-  <app-hotel-thumb *ngFor="let hotel of hotels" [hotel]="hotel"></app-hotel-thumb>
-</div>
+<h2>Best travel destinations in Uganda</h2>
+<section class="destinations">
+  <div class="imgThumb">
+    <img src="../../../assets/img/619932.webp" />
+    <p class="imgThumb__title">Kampala</p>
+    <p class="imgThumb__info">430 Hotels</p>
+  </div>
+
+  <div class="imgThumb">
+    <img src="../../../assets/img/619932.webp" />
+    <p class="imgThumb__title">Fort Portal</p>
+    <p class="imgThumb__info">430 Hotels</p>
+  </div>
+
+  <div class="imgThumb">
+    <img src="../../../assets/img/619932.webp" />
+    <p class="imgThumb__title">Jinja</p>
+    <p class="imgThumb__info">430 Hotels</p>
+  </div>
+
+  <div class="imgThumb">
+    <img src="../../../assets/img/619932.webp" />
+    <p class="imgThumb__title">Entebbe</p>
+    <p class="imgThumb__info">430 Hotels</p>
+  </div>
+
+  <div class="imgThumb">
+    <img src="../../../assets/img/619932.webp" />
+    <p class="imgThumb__title">Mbarara</p>
+    <p class="imgThumb__info">430 Hotels</p>
+  </div>
+</section>
+
+<h2>The most popular hotels in Kampala</h2>
+<section class="kampala-hotels">
+  <app-hotel-thumb
+    *ngFor="let hotel of hotels; let i = index"
+    [hotel]="hotel"
+    [index]="i"
+  ></app-hotel-thumb>
+</section>
+
+<div class="hotel__list"></div>

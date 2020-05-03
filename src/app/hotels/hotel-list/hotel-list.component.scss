@@ -3,3 +3,39 @@
   grid-template-columns: repeat(1fr, 4);
   grid-auto-flow: column;
 }
+
+.destinations {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  grid-column-gap: 1rem;
+
+  .imgThumb {
+    cursor: pointer;
+    transition: 0.5s ease-out;
+    img {
+      width: 100%;
+    }
+
+    .imgThumb__info {
+      color: #707070;
+      font-size: 14px;
+    }
+
+    .imgThumb__title {
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    &:hover {
+      transform: translateY(-2px);
+    }
+  }
+}
+
+.kampala-hotels {
+  margin: 1rem 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  grid-column-gap: 1rem;
+}

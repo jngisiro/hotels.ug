@@ -1,15 +1,28 @@
+import { EventEmitter } from "@angular/core";
+import { Subject } from 'rxjs';
+
+
 export class AuthService {
-  isAuthorized: boolean = false;
+  loggedIn: boolean = false;
+  checkAuth = new Subject<boolean>();
 
-  registerUser(){
+  isAuthenticated() {
+    const promise = new Promise((resolve, reject) => {
+      setTimeout(() => {
+        resolve(this.loggedIn);
+      }, 800);
+    });
 
+    return promise;
   }
 
-  loginUser(){
+  registerUser() {}
 
+  loginUser() {
+    this.loggedIn = true;
   }
 
-  logoutUser(){
-
+  logoutUser() {
+    this.loggedIn = false;
   }
 }

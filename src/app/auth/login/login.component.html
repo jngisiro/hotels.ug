@@ -1,0 +1,32 @@
+<section class="login-form">
+  <form class="form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <label for="username">
+      Email
+      <input
+        type="email"
+        ngModel
+        name="email"
+        #email="ngModel"
+        required
+        email
+      />
+      <small *ngIf="email.invalid && email.touched">Email is required</small>
+    </label>
+
+    <label for="password">
+      Password
+      <input
+        type="password"
+        ngModel
+        name="password"
+        #password="ngModel"
+        required
+      />
+      <small *ngIf="password.invalid && password.touched"
+        >Password is required</small
+      >
+    </label>
+
+    <button [disabled]="form.invalid">Login</button>
+  </form>
+</section>

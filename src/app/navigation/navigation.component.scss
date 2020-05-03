@@ -1,26 +1,42 @@
 a {
   text-decoration: none;
-  color: #000;
 }
 
-.navigation{
+.navigation {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
-  background-color: #fa3412;
+  padding: 0.5rem 1rem;
+  background-color: #4e342e;
 
-  .logo{
+  .logo {
     flex-grow: 1;
-    font-size: 2rem;
-  color:#fff;
+    font-size: 1.7rem;
+    padding: 0;
+    margin: 0;
+    color: #fff;
   }
 }
 
 .nav {
   display: flex;
   flex-flow: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
   list-style: none;
   flex-grow: 4;
-  color:#fff;
+  color: #fff;
+
+  li {
+    margin-top: 0.5rem;
+
+    a {
+      color: #fff;
+    }
+  }
+}
+
+.signin {
+  border: 1px solid #fff;
+  padding: 0.2rem 1.7rem;
+  border-radius: 3px;
 }

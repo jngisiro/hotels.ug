@@ -1,12 +1,24 @@
 <nav class="navigation">
-
-  <a class="logo" href="/">Hotels.ug</a>
+  <a class="logo" routerLink="/">Hotels.ug</a>
 
   <ul class="nav">
     <li><a href="#">USD</a></li>
-    <li><a href="#">Help</a></li>
-    <li><a href="#">Your Bookings</a></li>
-    <li><a href="#">Create Account</a></li>
-    <li><a href="#">Sign in</a></li>
+    <li><a routerLink="/" routerLinkActive="active">Help</a></li>
+    <li><a routerLink="/" routerLinkActive="active">Your Bookings</a></li>
+    <li *ngIf="!loggedIn">
+      <a routerLink="/register" routerLinkActive="active">Create Account</a>
+    </li>
+    <li>
+      <a
+        *ngIf="!loggedIn; else profile"
+        class="signin"
+        routerLink="/login"
+        routerLinkActive="active"
+        >Sign in</a
+      >
+      <ng-template #profile>
+        <a routerLink="#">Hi Paul</a>
+      </ng-template>
+    </li>
   </ul>
 </nav>

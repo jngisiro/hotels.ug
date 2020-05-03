@@ -1,13 +1,18 @@
+import { Injectable } from "@angular/core";
+import { Hotel } from "../hotels/hotel.model";
+import { hotels } from "../data";
+
+@Injectable()
 export class HotelDataService {
-  getHotels(){
-
+  getHotels() {
+    return hotels;
   }
 
-  getHotelById(){
-    
+  getHotelById(id: number): Hotel {
+    return hotels[id];
   }
 
-  registerHotel(){
-
+  registerHotel(hotel: Hotel) {
+    hotels.push(hotel);
   }
 }

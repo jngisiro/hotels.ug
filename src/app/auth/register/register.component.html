@@ -1,0 +1,64 @@
+<section class="register-form">
+  <form class="form" [formGroup]="registerForm" (ngSubmit)="onRegistered()">
+    <label for="firstname">
+      First Name
+      <input type="text" formControlName="firstname" />
+      <small
+        *ngIf="
+          registerForm.get('firstname').invalid &&
+          registerForm.get('firstname').touched
+        "
+        >Please provide a first name</small
+      >
+    </label>
+
+    <label for="lastname">
+      Last Name
+      <input type="text" formControlName="lastname" />
+      <small
+        *ngIf="
+          registerForm.get('lastname').invalid &&
+          registerForm.get('lastname').touched
+        "
+        >Please provide a last name</small
+      >
+    </label>
+
+    <label for="email">
+      Email Address
+      <input type="email" formControlName="email" />
+      <small
+        *ngIf="
+          registerForm.get('email').invalid && registerForm.get('email').touched
+        "
+        >Please provide a first email address</small
+      >
+    </label>
+
+    <label for="password">
+      Password
+      <input type="password" formControlName="password" />
+      <small
+        *ngIf="
+          registerForm.get('password').invalid &&
+          registerForm.get('password').touched
+        "
+        >Please provide a password</small
+      >
+    </label>
+
+    <label for="passwordConfirm">
+      Confirm Password
+      <input type="password" formControlName="passwordConfirm" />
+      <small
+        *ngIf="
+          registerForm.get('passwordConfirm').invalid &&
+          registerForm.get('passwordConfirm').touched
+        "
+        >Please confirm your password</small
+      >
+    </label>
+
+    <button [disabled]="registerForm.invalid">Create Account</button>
+  </form>
+</section>
