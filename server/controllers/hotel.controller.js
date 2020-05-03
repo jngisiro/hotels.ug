@@ -68,13 +68,7 @@ exports.createHotel = catchAsync(async (req, res, next) => {
   if (req.file) req.body.coverImage = req.file.filename;
 
   const newHotel = await Hotel.create({
-    description: req.body.description,
-    coverImage: req.body.coverImage,
-    images: req.body.images,
-    location: req.body.location,
-    price: req.body.price,
-    numberOfRooms: req.body.numberOfRooms,
-    numberOfBathrooms: req.body.numberOfBathrooms,
+    ...req.body,
   });
 
   res.status(201).json({

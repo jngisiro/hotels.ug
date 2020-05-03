@@ -13,7 +13,7 @@ const hotelSchema = mongoose.Schema({
   },
   summary: { type: String, required: [true, "Provide the Hotel summary"] },
   facilities: { type: [String] },
-  languages: { type: String },
+  languages: { type: [String] },
   availability: Boolean,
   prices: String,
   avgPrice: String,
