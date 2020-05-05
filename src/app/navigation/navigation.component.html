@@ -5,12 +5,12 @@
     <li><a href="#">USD</a></li>
     <li><a routerLink="/" routerLinkActive="active">Help</a></li>
     <li><a routerLink="/" routerLinkActive="active">Your Bookings</a></li>
-    <li *ngIf="!loggedIn">
+    <li *ngIf="!isAuthenticated">
       <a routerLink="/register" routerLinkActive="active">Create Account</a>
     </li>
     <li>
       <a
-        *ngIf="!loggedIn; else profile"
+        *ngIf="!isAuthenticated; else profile"
         class="signin"
         routerLink="/login"
         routerLinkActive="active"

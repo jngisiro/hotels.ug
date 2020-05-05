@@ -8,18 +8,18 @@ import { Subscription } from "rxjs";
   styleUrls: ["./navigation.component.scss"],
 })
 export class NavigationComponent implements OnInit, OnDestroy {
-  loggedIn: boolean = false;
-  subscription: Subscription;
+  private userSubscription: Subscription;
+  isAuthenticated = false;
 
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    this.subscription = this.auth.checkAuth.subscribe((isloggedIn) => {
-      this.loggedIn = isloggedIn;
+    this.userSubscription = this.auth.user.subscribe((user) => {
+      this.isAuthenticated = !!user;
     });
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this.userSubscription.unsubscribe();
   }
 }

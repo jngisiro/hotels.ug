@@ -17,6 +17,9 @@ import { RegisterComponent } from "./auth/register/register.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { CanDeactivateGuard } from "./auth/register/can-deactivate.service";
 import { Summarise } from "./hotels/hotel-list/summarise.pipe";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
+import { LoadingComponent } from "./loading/loading.component";
+import { AuthInterceptor } from "./services/authInterceptor.service";
 
 @NgModule({
   declarations: [
@@ -30,9 +33,22 @@ import { Summarise } from "./hotels/hotel-list/summarise.pipe";
     RegisterComponent,
     LoginComponent,
     Summarise,
+    LoadingComponent,
   ],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule],
-  providers: [HotelDataService, AuthService, AuthGuard, CanDeactivateGuard],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+  ],
+  providers: [
+    HotelDataService,
+    AuthService,
+    AuthGuard,
+    CanDeactivateGuard,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -4,12 +4,12 @@ export class Hotel {
     public summary: string,
     public location: string,
     public address: string,
-    public distFromCity: number,
-    public distFromEntebbe: number,
     public rating: number,
     public price: number,
-    public imagePath: string,
+    public coverImage: string,
     public amenities: string[],
-    public isAvailable: boolean
+    public isAvailable: boolean,
+    public distFromCity?: number,
+    public distFromEntebbe?: number
   ) {}
 }
