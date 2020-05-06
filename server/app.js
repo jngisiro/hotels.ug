@@ -9,6 +9,7 @@ const hpp = require("hpp");
 const app = express();
 const userRouter = require("./routes/user.routes");
 const hotelRouter = require("./routes/hotel.routes");
+const reviewRouter = require("./routes/review.routes");
 const AppError = require("./utils/app-error");
 const globalErrorHandler = require("./controllers/error.controller");
 
@@ -48,6 +49,9 @@ app.use(hpp({ whitelist: ["duration"] }));
 
 // Serve static files in public folder
 app.use(express.static("public"));
+
+// Review Routes
+app.use("/api/v1/reviews", reviewRouter);
 
 // Hotel Routes
 app.use("/api/v1/hotel", hotelRouter);

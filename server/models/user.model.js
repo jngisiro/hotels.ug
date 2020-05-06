@@ -36,6 +36,8 @@ const userSchema = new mongoose.Schema({
       msg: "Passwords do not match",
     },
   },
+  bookings: [{ type: mongoose.Schema.ObjectId, ref: "Hotel" }],
+  favourites: [{ type: mongoose.Schema.ObjectId, ref: "Hotel" }],
   active: {
     type: Boolean,
     default: true,

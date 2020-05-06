@@ -26,7 +26,7 @@ const createAuthToken = (user, statusCode, res) => {
 
   if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
 
-  res.cookie("jwt", token);
+  res.cookie("jwt", token, cookieOptions);
 
   // Hide password from the returned user data
   user.password = undefined;
@@ -62,13 +62,12 @@ exports.signup = catchAsync(async (req, res, next) => {
     "host"
   )}/api/v1/users/confirmAccount/${token}`;
 
-  //await new Email(newUser, confirmationUrl).sendWelcome();
+  await new Email(newUser, confirmationUrl).sendWelcome();
 
   res.status(201).json({
     status: "Success",
     data: {
       message: "Account created. Check your email to confirm your account",
-      confirmAccount: confirmationUrl,
     },
   });
 });
