@@ -20,10 +20,6 @@ export class LoginComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {}
 
-  onLoggedIn() {
-    this.auth.checkAuth.next(true);
-  }
-
   onSubmit(form: NgForm) {
     if (form.valid) {
       const { email, password } = form.value;

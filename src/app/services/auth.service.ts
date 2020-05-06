@@ -5,21 +5,9 @@ import { User } from "../auth/user.model";
 import { tap } from "rxjs/operators";
 
 export class AuthService {
-  loggedIn: boolean = false;
-  checkAuth = new Subject<boolean>();
   user = new Subject<User>();
 
   constructor(private http: HttpClient) {}
-
-  isAuthenticated() {
-    const promise = new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve(this.loggedIn);
-      }, 800);
-    });
-
-    return promise;
-  }
 
   registerUser(user) {
     return this.http
