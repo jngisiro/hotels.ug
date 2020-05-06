@@ -125,6 +125,8 @@ exports.protect = catchAsync(async (req, res, next) => {
     req.headers.authorization.startsWith("Bearer")
   ) {
     token = req.headers.authorization.split(" ")[1];
+  } else if (req.cookies.jwt) {
+    token = req.cookies.jwt;
   }
 
   if (!token) return next(new AppError("Please login", 401));
@@ -147,6 +149,16 @@ exports.protect = catchAsync(async (req, res, next) => {
   req.user = checkUser;
   next();
 });
+
+// Logout the user
+exports.logout = (req, res) => {
+  res.cookie("jwt", "logout", {
+    expires: new Date(Date.now() + 10 * 1000),
+    httpOnly: true,
+  });
+
+  res.status(200).json({ status: "success" });
+};
 
 // Restrict certain routes to authorized user roles
 exports.restrictTo = (...roles) => {

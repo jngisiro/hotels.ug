@@ -5,6 +5,7 @@ const cors = require("cors");
 const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
+const cookieParser = require("cookie-parser");
 
 const app = express();
 const userRouter = require("./routes/user.routes");
@@ -12,12 +13,6 @@ const hotelRouter = require("./routes/hotel.routes");
 const reviewRouter = require("./routes/review.routes");
 const AppError = require("./utils/app-error");
 const globalErrorHandler = require("./controllers/error.controller");
-
-const allowCrossDomain = (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "*");
-  next();
-};
 
 // handle rate limit with express-rate-limit
 const limiter = rateLimit({
@@ -37,6 +32,9 @@ app.options("*", cors());
 // Parse request data in the request body into json
 app.use(express.json({ limit: "10kb" }));
 app.use(express.urlencoded({ extended: true }));
+
+// Parse cookies from the request
+app.use(cookieParser());
 
 // Data Sanitization from NoSQL injections
 app.use(mongoSanitize());
