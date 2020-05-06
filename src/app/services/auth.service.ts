@@ -23,7 +23,7 @@ export class AuthService {
 
   registerUser(user) {
     return this.http
-      .post("https://hotelsug.herokuapp.com/api/v1/users/register", {
+      .post("https://hotelsug.herokuapp.com/api/v1/users/signup", {
         ...user,
       })
       .pipe(

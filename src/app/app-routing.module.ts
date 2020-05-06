@@ -1,7 +1,7 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { HotelDetailsComponent } from "./hotels/hotel-details/hotel-details.component";
-import { HotelListComponent } from "./hotels/hotel-list/hotel-list.component";
+import { HotelDetailsComponent } from "./auth/hotels/hotel-details/hotel-details.component";
+import { HotelListComponent } from "./auth/hotels/hotel-list/hotel-list.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { LoginComponent } from "./auth/login/login.component";
 import { RegisterComponent } from "./auth/register/register.component";
