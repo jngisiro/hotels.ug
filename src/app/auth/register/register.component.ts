@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import { CanComponentDeactivate } from "./can-deactivate.service";
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { Observable } from "rxjs";
+import { AuthService } from "src/app/services/auth.service";
 
 @Component({
   selector: "app-register",
@@ -12,9 +13,10 @@ import { Observable } from "rxjs";
 export class RegisterComponent implements OnInit, CanComponentDeactivate {
   changesSaved: boolean = false;
   registerForm: FormGroup;
-  date = Date.now()
+  loading: boolean = false;
+  date = Date.now();
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit() {
     this.registerForm = new FormGroup({
@@ -33,7 +35,18 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
   }
 
   onRegistered() {
-    console.log(this.registerForm);
+    this.loading = true;
+    this.auth.registerUser(this.registerForm.value).subscribe(
+      (response) => {
+        console.log(response);
+        this.loading = false;
+      },
+      (error) => {
+        console.log(error);
+        this.loading = false;
+      }
+    );
+
     this.registerForm.reset();
     this.changesSaved = true;
   }

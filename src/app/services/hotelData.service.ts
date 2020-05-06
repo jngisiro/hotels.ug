@@ -8,16 +8,11 @@ export class HotelDataService {
   constructor(private http: HttpClient) {}
 
   getHotels() {
-    return this.http
-      .get("https://hotelsug.herokuapp.com/api/v1/hotel", {
-        headers: new HttpHeaders({ success: "false" }),
-        responseType: "json",
+    return this.http.get("https://hotelsug.herokuapp.com/api/v1/hotel").pipe(
+      map((hotels: any) => {
+        return hotels.data;
       })
-      .pipe(
-        map((hotels: any) => {
-          return hotels.data;
-        })
-      );
+    );
   }
 
   getHotelById(id: number): Hotel {

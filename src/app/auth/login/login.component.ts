@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(form: NgForm) {
-    console.log(form.value);
     if (form.valid) {
       const { email, password } = form.value;
       this.loading = true;
@@ -36,7 +35,7 @@ export class LoginComponent implements OnInit, OnDestroy {
         },
         (err) => {
           this.loading = false;
-          this.error = err.message;
+          this.error = err.error.error;
         }
       );
     }

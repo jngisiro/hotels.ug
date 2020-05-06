@@ -1,5 +1,6 @@
 <section class="login-form">
   <form class="form" (ngSubmit)="onSubmit(form)" #form="ngForm">
+    <small class="error">{{ error }}</small>
     <label for="username">
       Email
       <input
@@ -27,8 +28,9 @@
       >
     </label>
 
-    <button [disabled]="form.invalid">Login</button>
-    <small>Invalid Username or Password</small>
+    <button *ngIf="!loading" [disabled]="form.invalid">Login</button>
+
+    <app-loading *ngIf="loading"></app-loading>
 
     <p>Don't have an account? <a routerLink="/register">Register Here</a></p>
   </form>
