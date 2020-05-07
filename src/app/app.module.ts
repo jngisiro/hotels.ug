@@ -20,6 +20,8 @@ import { Summarise } from "./hotels/hotel-list/summarise.pipe";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { LoadingComponent } from "./loading/loading.component";
 import { AuthInterceptor } from "./services/authInterceptor.service";
+import { BookingsComponent } from "./hotels/bookings/bookings.component";
+import { FavouritesComponent } from "./hotels/favourites/favourites.component";
 
 @NgModule({
   declarations: [
@@ -34,6 +36,8 @@ import { AuthInterceptor } from "./services/authInterceptor.service";
     LoginComponent,
     Summarise,
     LoadingComponent,
+    BookingsComponent,
+    FavouritesComponent,
   ],
   imports: [
     BrowserModule,

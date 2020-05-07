@@ -10,12 +10,14 @@ import { Subscription } from "rxjs";
 export class NavigationComponent implements OnInit, OnDestroy {
   private userSubscription: Subscription;
   isAuthenticated = false;
+  user;
 
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
     this.userSubscription = this.auth.user.subscribe((user) => {
       this.isAuthenticated = !!user;
+      this.user = user;
     });
   }
 

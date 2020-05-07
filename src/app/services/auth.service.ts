@@ -36,11 +36,11 @@ export class AuthService {
       .pipe(
         tap((response: any) => {
           this.handleAuth(
-            response.email,
-            response.firstname,
-            response.lastname,
+            response.data.user.email,
+            response.data.user.firstname,
+            response.data.user.lastname,
             response.token,
-            +response.expiresIn
+            +response.data.user.confirmAccountExpires
           );
         })
       );

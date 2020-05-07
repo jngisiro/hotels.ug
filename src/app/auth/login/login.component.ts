@@ -21,20 +21,21 @@ export class LoginComponent implements OnInit, OnDestroy {
   ngOnDestroy() {}
 
   onSubmit(form: NgForm) {
-    if (form.valid) {
-      const { email, password } = form.value;
-      this.loading = true;
-      this.auth.loginUser(email, password).subscribe(
-        (response) => {
-          this.loading = false;
-          this.router.navigate["/"];
-        },
-        (err) => {
-          this.loading = false;
-          this.error = err.error.error;
-        }
-      );
-    }
-    return;
+    // if (form.invalid) {
+    //   return;
+    // }
+    this.router.navigate["/register"];
+    // const { email, password } = form.value;
+    // this.loading = true;
+    // this.auth.loginUser(email, password).subscribe(
+    //   (response) => {
+    //     this.loading = false;
+    //     this.router.navigate["/register"];
+    //   },
+    //   (err) => {
+    //     this.loading = false;
+    //     this.error = err.error.error;
+    //   }
+    // );
   }
 }
