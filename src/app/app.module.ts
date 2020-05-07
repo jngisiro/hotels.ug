@@ -22,6 +22,9 @@ import { LoadingComponent } from "./loading/loading.component";
 import { AuthInterceptor } from "./services/authInterceptor.service";
 import { BookingsComponent } from "./hotels/bookings/bookings.component";
 import { FavouritesComponent } from "./hotels/favourites/favourites.component";
+import { AccountConfirmationComponent } from "./auth/account-confirmation/account-confirmation.component";
+import { ForgotPasswordComponent } from "./auth/forgot-password/forgot-password.component";
+import { ResetPasswordComponent } from "./auth/reset-password/reset-password.component";
 
 @NgModule({
   declarations: [
@@ -38,6 +41,9 @@ import { FavouritesComponent } from "./hotels/favourites/favourites.component";
     LoadingComponent,
     BookingsComponent,
     FavouritesComponent,
+    AccountConfirmationComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
   ],
   imports: [
     BrowserModule,
