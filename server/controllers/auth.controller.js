@@ -16,11 +16,14 @@ const signToken = (id) => {
 const createAuthToken = (user, statusCode, res) => {
   // Generate auth token using new user's id
   const token = signToken(user._id);
+  const expiresIn = new Date(
+    new Date().getTime() + process.env.JWT_COOKIE_EXPIRES * 60 * 60 * 1000
+  );
+
+  console.log(process.env.JWT_COOKIE_EXPIRES);
 
   const cookieOptions = {
-    expires: new Date(
-      Date.now() + process.env.JWT_COOKIE_EXPIRES * 60 * 60 * 1000
-    ),
+    expiresIn,
     httpOnly: true,
   };
 
@@ -34,9 +37,7 @@ const createAuthToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "Success",
     token,
-    expiresIn: new Date(
-      new Date().getTime() + process.env.JWT_EXPIRES_IN * 60 * 60 * 1000
-    ),
+    expiresIn,
     data: {
       user,
     },
