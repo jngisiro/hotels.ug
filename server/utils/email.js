@@ -7,7 +7,7 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.firstname;
     this.url = url;
-    this.from = `Support at ProperyView <${process.env.EMAIL_FROM}>`;
+    this.from = `Support at Hotels.ug <${process.env.EMAIL_FROM}>`;
   }
 
   newTransport() {
@@ -55,7 +55,7 @@ module.exports = class Email {
   }
 
   async sendWelcome() {
-    await this.send("welcome", "Welcome to foodie 😁");
+    await this.send("welcome", "Welcome to Hotels.ug 😁");
   }
 
   async sendPasswordReset() {

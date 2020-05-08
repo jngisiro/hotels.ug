@@ -20,8 +20,6 @@ const createAuthToken = (user, statusCode, res) => {
     new Date().getTime() + process.env.JWT_COOKIE_EXPIRES * 60 * 60 * 1000
   );
 
-  console.log(process.env.JWT_COOKIE_EXPIRES);
-
   const cookieOptions = {
     expiresIn,
     httpOnly: true,
@@ -96,10 +94,9 @@ exports.confirmAccout = catchAsync(async (req, res, next) => {
   user.confirmAccountExpires = undefined;
   await user.save({ validateBeforeSave: false });
 
-  res.status(200).json({
-    status: "Success",
-    message: "Account successfully activated",
-  });
+  const redirectUrl = `https://youthful-poincare-7c7cce.netlify.app/confirmAccount`;
+
+  res.redirect(`${redirectUrl}/?success=true`);
 });
 
 exports.login = catchAsync(async (req, res, next) => {
