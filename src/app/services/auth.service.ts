@@ -32,7 +32,7 @@ export class AuthService {
             response.data.user.firstname,
             response.data.user.lastname,
             response.token,
-            +response.data.user.confirmAccountExpires
+            +response.expiresIn
           );
         })
       );
