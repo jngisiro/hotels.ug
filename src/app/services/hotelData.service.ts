@@ -1,11 +1,12 @@
 import { Injectable } from "@angular/core";
 import { Hotel } from "../hotels/hotel.model";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { map } from "rxjs/operators";
+import { map, take, exhaustMap } from "rxjs/operators";
+import { AuthService } from "./auth.service";
 
 @Injectable()
 export class HotelDataService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   getHotels() {
     return this.http.get("https://hotelsug.herokuapp.com/api/v1/hotel").pipe(
@@ -23,5 +24,19 @@ export class HotelDataService {
     return;
   }
 
-  getUsersBookedHotels(token: string) {}
+  getUsersBookedHotels(token: string) {
+    return this.auth.user.pipe(
+      take(1),
+      exhaustMap((user) => {
+        return this.http.get(
+          "https://hotelsug.herokuapp.com/api/v1/user/myhotels",
+          {
+            headers: new HttpHeaders({
+              authorization: "bearer " + user.gettoken,
+            }),
+          }
+        );
+      })
+    );
+  }
 }

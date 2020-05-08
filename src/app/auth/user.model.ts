@@ -8,7 +8,7 @@ export class User {
   ) {}
 
   gettoken() {
-    if (this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
+    if (!this._tokenExpirationDate || new Date() > this._tokenExpirationDate) {
       return null;
     }
 

@@ -20,5 +20,8 @@
         <a routerLink="#">Hi {{ user.firstname }}</a>
       </ng-template>
     </li>
+    <li *ngIf="isAuthenticated" (click)="onLogout()">
+      <a>Logout</a>
+    </li>
   </ul>
 </nav>

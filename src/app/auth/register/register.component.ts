@@ -14,7 +14,9 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
   changesSaved: boolean = false;
   registerForm: FormGroup;
   loading: boolean = false;
+  hasRegistered = false;
   date = Date.now();
+  confirmEmail: string = "";
 
   constructor(private router: Router, private auth: AuthService) {}
 
@@ -36,19 +38,21 @@ export class RegisterComponent implements OnInit, CanComponentDeactivate {
 
   onRegistered() {
     this.loading = true;
+    // this.router.navigate(["/l"]);
     this.auth.registerUser(this.registerForm.value).subscribe(
       (response) => {
-        console.log(response);
+        this.hasRegistered = true;
+        console.log(this.registerForm.value);
+        this.confirmEmail = this.registerForm.value.email;
         this.loading = false;
+        this.registerForm.reset();
+        this.changesSaved = true;
       },
       (error) => {
         console.log(error);
         this.loading = false;
       }
     );
-
-    this.registerForm.reset();
-    this.changesSaved = true;
   }
 
   canDeactivate() {

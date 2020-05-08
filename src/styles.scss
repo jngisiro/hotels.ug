@@ -85,3 +85,19 @@ body {
     }
   }
 }
+
+.notify {
+  background: rgba(185, 36, 36, 0.3);
+  padding: 50px;
+
+  &__header {
+    font-size: 50px;
+    font-weight: 100;
+  }
+
+  &__message {
+    font-size: 18px;
+    margin-top: 20px;
+    font-weight: 100;
+  }
+}

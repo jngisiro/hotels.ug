@@ -1,30 +1,21 @@
 import { EventEmitter } from "@angular/core";
-import { Subject } from "rxjs";
+import { BehaviorSubject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { User } from "../auth/user.model";
 import { tap } from "rxjs/operators";
 
 export class AuthService {
-  user = new Subject<User>();
+  user = new BehaviorSubject<User>(null);
 
   constructor(private http: HttpClient) {}
 
   registerUser(user) {
-    return this.http
-      .post("https://hotelsug.herokuapp.com/api/v1/users/signup", {
+    return this.http.post(
+      "https://hotelsug.herokuapp.com/api/v1/users/signup",
+      {
         ...user,
-      })
-      .pipe(
-        tap((response: any) => {
-          this.handleAuth(
-            response.email,
-            response.firstname,
-            response.lastname,
-            response.token,
-            +response.expiresIn
-          );
-        })
-      );
+      }
+    );
   }
 
   loginUser(email: string, password: string) {
@@ -35,6 +26,7 @@ export class AuthService {
       })
       .pipe(
         tap((response: any) => {
+          console.log(response);
           this.handleAuth(
             response.data.user.email,
             response.data.user.firstname,
@@ -46,11 +38,31 @@ export class AuthService {
       );
   }
 
-  logoutUser() {
-    this.user.next(null);
+  autoLogin() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    if (!userData) {
+      return;
+    }
+
+    const user = new User(
+      userData.email,
+      userData.firstname,
+      userData.lastname,
+      userData._token,
+      new Date(userData._tokenExpirationDate)
+    );
+
+    if (user.gettoken()) {
+      this.user.next(user);
+    }
   }
 
-  handleAuth(
+  logoutUser() {
+    this.user.next(null);
+    localStorage.removeItem("userData");
+  }
+
+  private handleAuth(
     email: string,
     firstname: string,
     lastname: string,
@@ -61,5 +73,6 @@ export class AuthService {
 
     const user = new User(email, firstname, lastname, token, expirationDate);
     this.user.next(user);
+    localStorage.setItem("userData", JSON.stringify(user));
   }
 }

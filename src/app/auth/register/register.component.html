@@ -1,5 +1,10 @@
 <section class="register-form">
-  <form class="form" [formGroup]="registerForm" (ngSubmit)="onRegistered()">
+  <form
+    class="form"
+    [formGroup]="registerForm"
+    (ngSubmit)="onRegistered()"
+    *ngIf="!hasRegistered"
+  >
     <label for="firstname">
       First Name
       <input type="text" formControlName="firstname" />
@@ -64,4 +69,14 @@
     </button>
     <app-loading *ngIf="loading"></app-loading>
   </form>
+
+  <div class="notify" *ngIf="hasRegistered">
+    <h1 class="notify__header">
+      Success
+    </h1>
+    <p class="notify__message">
+      Congratulations. Your account has been created at Hotels.ug Please check
+      your email at: <b>{{ confirmEmail }}</b> to activate your account
+    </p>
+  </div>
 </section>
