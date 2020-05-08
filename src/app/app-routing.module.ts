@@ -14,8 +14,8 @@ import { FavouritesComponent } from "./hotels/favourites/favourites.component";
 import { AuthGuard } from "./services/auth-guard.service";
 
 const routes: Routes = [
-  { path: "", component: HotelListComponent },
-  { path: "hotel/:id", component: HotelDetailsComponent },
+  { path: "", component: HotelListComponent, },
+  { path: "hotel/:id", component: HotelDetailsComponent, },
   { path: "bookings", component: BookingsComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginComponent },
   {
@@ -36,7 +36,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { useHash: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
