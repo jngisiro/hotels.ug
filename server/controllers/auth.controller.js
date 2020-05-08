@@ -34,7 +34,7 @@ const createAuthToken = (user, statusCode, res) => {
   res.status(statusCode).json({
     status: "Success",
     token,
-    expiresIn: new Date() + +process.env.JWT_EXPIRES_IN * 60 * 60 * 1000,
+    expiresIn: new Date().getTime() + +process.env.JWT_EXPIRES_IN * 60 * 60,
     data: {
       user,
     },
