@@ -10,7 +10,7 @@ const document = "hotel";
 exports.getAllHotels = catchAsync(async (req, res, next) => {
   // Filter object to catch any userid params and send only transactions for that user
   let filter = {};
-
+  console.log(req.cookies);
   // Save the query parameters in an object
   let queryObj = { ...req.query };
 
