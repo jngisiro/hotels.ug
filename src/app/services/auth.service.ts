@@ -32,7 +32,7 @@ export class AuthService {
             response.data.user.firstname,
             response.data.user.lastname,
             response.token,
-            +response.expiresIn
+            response.expiresIn
           );
         })
       );
@@ -69,7 +69,9 @@ export class AuthService {
     token: string,
     expiresIn: number
   ) {
-    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const expirationDate = new Date(
+      new Date().getTime() + new Date(expiresIn).getTime()
+    );
 
     const user = new User(email, firstname, lastname, token, expirationDate);
     this.user.next(user);
